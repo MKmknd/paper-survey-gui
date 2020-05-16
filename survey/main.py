@@ -3,9 +3,13 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.recycleview import RecycleView
 from kivy.uix.button import Button
 from kivy.properties import ListProperty
-import random
+
+import db
 
 import glob
+import sqlite3
+
+db_path = "./paper.db"
 
 class MyButton(Button):
     def print_data(self, data):
@@ -27,15 +31,19 @@ class PaperInfo(BoxLayout):
 
     def __init__(self, **kwargs):
         super(PaperInfo, self).__init__(**kwargs)
+        self.f_name = "temp"
 
-    def load_data(self):
-        self.result_list = ['Unknown', '{0}'.format(random.randint(1, 100)), 'Unknown', 'None']
+    def load_data(self, f_name):
+        self.result_list = db.load_curr_info(db_path, f_name)
+        self.f_name = f_name
+        #self.result_list = ['Unknown', '{0}'.format(random.randint(1, 100)), 'Unknown', 'None']
 
     def enterInfo(self):
-        print(self.ids['Q1'].text)
-        print(self.ids['Q2'].text)
-        print(self.ids['Q3'].text)
-        print(self.ids['Q4'].text)
+        db.update_info(db_path, self.f_name,
+                        self.ids['Q1'].text,
+                        self.ids['Q2'].text,
+                        self.ids['Q3'].text,
+                        self.ids['Q4'].text)
 
 
 class PaperSurveyRoot(BoxLayout):
@@ -52,5 +60,15 @@ class PaperSurveyApp(App):
     pass
 
 
+def init_db():
+
+    conn = sqlite3.connect(db_path)
+    cur = conn.cursor()
+
+    cur.execute("CREATE TABLE IF NOT EXISTS papers(name TEXT PRIMARY KEY, Q1 TEXT, Q2 TEXT, Q3 TEXT, Q4 TEXT);")
+    conn.commit()
+    conn.close()
 if __name__=="__main__":
+
+    init_db()
     PaperSurveyApp().run()

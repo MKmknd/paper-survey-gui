@@ -28,7 +28,7 @@ PaperSurveyRoot
                 id: paperinfo
 
 <MyButton>:
-    on_release: root.print_data(self.text); app.root.paperinfo.load_data(); app.root.carousel.load_slide(app.root.paperinfo)
+    on_release: root.print_data(self.text); app.root.paperinfo.load_data(self.text); app.root.carousel.load_slide(app.root.paperinfo)
 
 <RV>:
     viewclass: 'MyButton'

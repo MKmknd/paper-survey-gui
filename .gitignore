@@ -9,6 +9,9 @@ dist
 *.egg-info
 Utils.egg-info/
 
+# data
+*.db
+
 # Mac files
 .DS_Store
 *.swp
