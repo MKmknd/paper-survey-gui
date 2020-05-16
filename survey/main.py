@@ -2,6 +2,8 @@ from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.recycleview import RecycleView
 from kivy.uix.button import Button
+from kivy.properties import ListProperty
+import random
 
 import glob
 
@@ -21,13 +23,13 @@ class PaperListForm(BoxLayout):
 
 
 class PaperInfo(BoxLayout):
+    result_list = ListProperty(['Unknown', 'None', 'Unknown', 'None'])
+
     def __init__(self, **kwargs):
         super(PaperInfo, self).__init__(**kwargs)
-        self.Q1_result = 'Unknown'
-        self.Q2_result = "None"
-        self.Q3_result = 'Unknown'
-        self.Q4_result = "None"
 
+    def load_data(self):
+        self.result_list = ['Unknown', '{0}'.format(random.randint(1, 100)), 'Unknown', 'None']
 
     def enterInfo(self):
         print(self.ids['Q1'].text)

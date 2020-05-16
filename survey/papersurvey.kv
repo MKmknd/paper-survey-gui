@@ -17,12 +17,8 @@ PaperSurveyRoot
 
                 ActionButton:
                     text: "Paper List"
-
                     on_press: app.root.carousel.load_slide(app.root.paperlistform)
 
-                #ActionButton:
-                #    text: "Paper Info"
-                #    on_press: app.root.carousel.load_slide(app.root.paperinfo)
 
         Carousel:
             id: carousel
@@ -32,7 +28,7 @@ PaperSurveyRoot
                 id: paperinfo
 
 <MyButton>:
-    on_release: root.print_data(self.text); app.root.carousel.load_slide(app.root.paperinfo)
+    on_release: root.print_data(self.text); app.root.paperinfo.load_data(); app.root.carousel.load_slide(app.root.paperinfo)
 
 <RV>:
     viewclass: 'MyButton'
@@ -73,7 +69,7 @@ PaperSurveyRoot
             Spinner:
                 id: Q1
                 size_hint_x: 0.6
-                text: root.Q1_result
+                text: root.result_list[0]
                 values: "Unknown", "No", "Yes"
                 font_size: 40
                 #on_text: root.spinner_Q1()
@@ -90,7 +86,8 @@ PaperSurveyRoot
 
             TextInput:
                 id: Q2
-                text: root.Q2_result
+                #text: root.Q2_result
+                text: root.result_list[1]
                 size_hint_x: 0.6
                 font_size: 30
                 focus: True
@@ -108,7 +105,8 @@ PaperSurveyRoot
             Spinner:
                 id: Q3
                 size_hint_x: 0.6
-                text: root.Q3_result
+                #text: root.Q3_result
+                text: root.result_list[2]
                 values: "Unknown", "numerical", "text", "other"
                 font_size: 40
 
@@ -123,7 +121,8 @@ PaperSurveyRoot
 
             TextInput:
                 id: Q4
-                text: root.Q4_result
+                #text: root.Q4_result
+                text: root.result_list[3]
                 size_hint_x: 0.6
                 font_size: 30
                 focus: True
