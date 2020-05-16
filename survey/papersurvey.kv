@@ -1,0 +1,89 @@
+
+
+PaperSurveyRoot
+
+<PaperSurveyRoot>
+    carousel: carousel
+    paperlistform: paperlistform
+    paperinfo: paperinfo
+
+    BoxLayout:
+        orientation: "vertical"
+        ActionBar:
+            ActionView:
+                ActionPrevious:
+                    title: "Paper Survey"
+                    with_previous: False
+
+                ActionButton:
+                    text: "Paper List"
+
+                    on_press: app.root.carousel.load_slide(app.root.paperlistform)
+
+                ActionButton:
+                    text: "Paper Info"
+
+                    on_press: app.root.carousel.load_slide(app.root.paperinfo)
+
+        Carousel:
+            id: carousel
+            PaperListForm:
+                id: paperlistform
+            PaperInfo:
+                id: paperinfo
+
+<MyButton>:
+    on_release:
+        root.print_data(self.text)
+
+<RV>:
+    viewclass: 'MyButton'
+    RecycleBoxLayout:
+        orientation: 'vertical'
+        default_size: None, dp(56)
+        default_size_hint: 1, None
+        size_hint_y: None
+        height: self.minimum_height
+
+
+<PaperListForm>
+    orientation: "vertical"
+
+    BoxLayout:
+        Label:
+            text_size: self.size
+            halign: 'left'
+            valign: 'middle'
+            text: "Please select a paper and fill out the information"
+
+        RV:
+
+
+<PaperInfo>
+    orientation: "horizontal"
+    BoxLayout:
+        Label:
+            text: "input 1"
+            size_hint_y: 0.3
+            pos_hint: {"top": 1}
+
+    BoxLayout:
+        orientation: "horizontal"
+        TextInput:
+            id: input_1
+            text: root.default_input_1
+            size_hint_x: 0.7
+            size_hint_y: 0.3
+            pos_hint: {"top": 1}
+            font_size: 40
+            focus: True
+            on_text_validate: root.buttonClicked_input_1()
+
+        Button:
+            id: button_input_1
+            size_hint_x: 0.3
+            size_hint_y: 0.3
+            pos_hint: {"top": 1}
+            text: "OK"
+            font_size: 40
+            on_press: root.buttonClicked_input_1()
