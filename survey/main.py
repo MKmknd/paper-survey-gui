@@ -39,6 +39,7 @@ class PaperInfo(BoxLayout):
         #self.result_list = ['Unknown', '{0}'.format(random.randint(1, 100)), 'Unknown', 'None']
 
     def enterInfo(self):
+        self.result_list = [self.ids['Q1'].text, self.ids['Q2'].text, self.ids['Q3'].text, self.ids['Q4'].text]
         db.update_info(db_path, self.f_name,
                         self.ids['Q1'].text,
                         self.ids['Q2'].text,
