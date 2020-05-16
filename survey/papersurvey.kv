@@ -60,30 +60,83 @@ PaperSurveyRoot
 
 
 <PaperInfo>
-    orientation: "horizontal"
     BoxLayout:
-        Label:
-            text: "input 1"
-            size_hint_y: 0.3
-            pos_hint: {"top": 1}
+        orientation: "vertical"
 
-    BoxLayout:
-        orientation: "horizontal"
-        TextInput:
-            id: input_1
-            text: root.default_input_1
-            size_hint_x: 0.7
-            size_hint_y: 0.3
-            pos_hint: {"top": 1}
-            font_size: 40
-            focus: True
-            on_text_validate: root.buttonClicked_input_1()
+        ##########################
+        ## Q1
+        ##########################
+        BoxLayout:
+            orientation: "horizontal"
+            Label:
+                text: "Q1. Are any ILAs used?"
+                size_hint_x: 0.4
 
+            Spinner:
+                id: Q1
+                size_hint_x: 0.6
+                text: root.Q1_result
+                values: "Unknown", "No", "Yes"
+                font_size: 40
+                #on_text: root.spinner_Q1()
+
+
+        ##########################
+        ## Q2
+        ##########################
+        BoxLayout:
+            orientation: "horizontal"
+            Label:
+                text: "Q2. If used, which ILA?"
+                size_hint_x: 0.4
+
+            TextInput:
+                id: Q2
+                text: root.Q2_result
+                size_hint_x: 0.6
+                font_size: 30
+                focus: True
+                #on_text_validate: root.buttonClicked_input_1()
+
+        ##########################
+        ## Q3
+        ##########################
+        BoxLayout:
+            orientation: "horizontal"
+            Label:
+                text: "Q3. What are the metrics?"
+                size_hint_x: 0.4
+
+            Spinner:
+                id: Q3
+                size_hint_x: 0.6
+                text: root.Q3_result
+                values: "Unknown", "numerical", "text", "other"
+                font_size: 40
+
+        ##########################
+        ## Q4
+        ##########################
+        BoxLayout:
+            orientation: "horizontal"
+            Label:
+                text: "Q4. If other, what is it?"
+                size_hint_x: 0.4
+
+            TextInput:
+                id: Q4
+                text: root.Q4_result
+                size_hint_x: 0.6
+                font_size: 30
+                focus: True
+
+
+        ##########################
+        ## enter data into db
+        ##########################
         Button:
-            id: button_input_1
-            size_hint_x: 0.3
-            size_hint_y: 0.3
-            pos_hint: {"top": 1}
-            text: "OK"
+            id: enter_db
+            size_hint_x: 1
+            text: "Enter info to db"
             font_size: 40
-            on_press: root.buttonClicked_input_1()
+            on_press: root.enterInfo()

@@ -2,6 +2,7 @@ from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.recycleview import RecycleView
 from kivy.uix.button import Button
+from kivy.uix.spinner import Spinner
 
 import glob
 
@@ -14,6 +15,11 @@ class RV(RecycleView):
         super(RV, self).__init__(**kwargs)
         self.data = [{'text': x} for x in sorted(glob.glob("./papers/*.pdf"))]
 
+class CustomSpinner(Spinner):
+    def __init__(self, **kwargs):
+        super(CustomSpinner, self).__init__(**kwargs)
+
+
 class PaperListForm(BoxLayout):
     def __init__(self, **kwargs):
         super(PaperListForm, self).__init__(**kwargs)
@@ -22,12 +28,19 @@ class PaperListForm(BoxLayout):
 class PaperInfo(BoxLayout):
     def __init__(self, **kwargs):
         super(PaperInfo, self).__init__(**kwargs)
-        self.default_input_1 = "TEST"
+        self.Q1_result = 'Unknown'
+        self.Q2_result = "None"
+        self.Q3_result = 'Unknown'
+        self.Q4_result = "None"
 
-    def buttonClicked_input_1(self):
-        self.text = self.ids['input_1'].text
-        print(self.text)
+    #def spinner_Q1(self):
+    #    self.Q1_result = self.ids['Q1'].text
+    #    #print("spinner")
 
+    def enterInfo(self):
+        print(self.ids['Q1'].text)
+        print(self.ids['Q2'].text)
+        print(self.ids['Q3'].text)
 
 
 class PaperSurveyRoot(BoxLayout):
