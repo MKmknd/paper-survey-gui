@@ -28,9 +28,6 @@ class PaperInfo(BoxLayout):
         self.Q3_result = 'Unknown'
         self.Q4_result = "None"
 
-    #def spinner_Q1(self):
-    #    self.Q1_result = self.ids['Q1'].text
-    #    #print("spinner")
 
     def enterInfo(self):
         print(self.ids['Q1'].text)
