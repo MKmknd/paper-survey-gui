@@ -11,6 +11,7 @@ Utils.egg-info/
 
 # data
 *.db
+ICSE*
 
 # Mac files
 .DS_Store
