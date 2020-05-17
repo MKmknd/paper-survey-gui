@@ -127,6 +127,22 @@ PaperSurveyRoot
                 font_size: 30
                 focus: True
 
+        ##########################
+        ## Q5
+        ##########################
+        BoxLayout:
+            orientation: "horizontal"
+            Label:
+                text: "Q5. If other info, please write."
+                size_hint_x: 0.4
+
+            TextInput:
+                id: Q5
+                #text: root.Q5_result
+                text: root.result_list[4]
+                size_hint_x: 0.6
+                font_size: 30
+                focus: True
 
         ##########################
         ## enter data into db

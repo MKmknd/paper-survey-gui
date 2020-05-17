@@ -38,7 +38,7 @@ class PaperInfo(BoxLayout):
     with this page.
     """
     # The property is used to move the info.
-    result_list = ListProperty(['Unknown', 'None', 'Unknown', 'None'])
+    result_list = ListProperty(['Unknown', 'None', 'Unknown', 'None', 'None'])
 
     def __init__(self, **kwargs):
         super(PaperInfo, self).__init__(**kwargs)
@@ -56,12 +56,13 @@ class PaperInfo(BoxLayout):
         """
         Enter the info into the database
         """
-        self.result_list = [self.ids['Q1'].text, self.ids['Q2'].text, self.ids['Q3'].text, self.ids['Q4'].text]
+        self.result_list = [self.ids['Q1'].text, self.ids['Q2'].text, self.ids['Q3'].text, self.ids['Q4'].text, self.ids['Q5'].text]
         db.update_info(db_path, self.f_name,
                         self.ids['Q1'].text,
                         self.ids['Q2'].text,
                         self.ids['Q3'].text,
-                        self.ids['Q4'].text)
+                        self.ids['Q4'].text,
+                        self.ids['Q5'].text)
 
 
 class PaperSurveyRoot(BoxLayout):
@@ -92,7 +93,7 @@ def init_db():
     conn = sqlite3.connect(db_path)
     cur = conn.cursor()
 
-    cur.execute("CREATE TABLE IF NOT EXISTS papers(name TEXT PRIMARY KEY, Q1 TEXT, Q2 TEXT, Q3 TEXT, Q4 TEXT);")
+    cur.execute("CREATE TABLE IF NOT EXISTS papers(name TEXT PRIMARY KEY, Q1 TEXT, Q2 TEXT, Q3 TEXT, Q4 TEXT, Q5 TEXT);")
     conn.commit()
     conn.close()
 
